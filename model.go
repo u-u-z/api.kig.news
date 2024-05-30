@@ -1,6 +1,9 @@
 package main
 
-import "gorm.io/gorm"
+import (
+	"gorm.io/datatypes"
+	"gorm.io/gorm"
+)
 
 type Product struct {
 	gorm.Model
@@ -17,8 +20,8 @@ type Auth struct {
 type Price struct {
 	gorm.Model
 	// Id is the primary key & auto-incremented
-	ID             uint64                 `json:"id" gorm:"primaryKey"`
-	Price          float64                `json:"price" gorm:"type:decimal(10,2)"`
-	Details        map[string]interface{} `json:"price_details" gorm:"type:jsonb;default:null"`
-	UploadUserName string                 `json:"user_id" gorm:"default:null"`
+	ID      uint64         `json:"id" gorm:"primaryKey"`
+	Time    int64          `json:"time" `
+	Price   float64        `json:"price" gorm:"type:decimal(10,2)" validator:"required"`
+	Details datatypes.JSON `json:"details" gorm:"type:jsonb;default:null" validate:"max=1024"`
 }
