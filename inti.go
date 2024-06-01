@@ -20,7 +20,9 @@ func DBInit() {
 	if err != nil {
 		panic("ERROR: Failed to connect to database")
 	}
+}
 
+func DBAutoMigrate() {
 	db.AutoMigrate(&Price{}, &Product{}, &Auth{})
 }
 

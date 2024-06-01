@@ -20,6 +20,7 @@ var (
 func main() {
 
 	DBInit()
+	DBAutoMigrate()
 	HTTPServerInit()
 	RouteInit()
 
